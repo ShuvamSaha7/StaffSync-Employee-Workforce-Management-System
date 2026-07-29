@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+
+    <title>Edit Employee</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+</head>
+
+
+
+<body>
+
+
+<div class="container mt-4">
+
+
+    <h2>Edit Employee</h2>
+
+
+
+
+    <form th:action="@{/employees/update/{id}(id=${employee.id})}"
+          th:object="${employee}"
+          method="post">
+
+
+
+
+
+        <label>Name:</label>
+
+        <input type="text"
+               class="form-control"
+               th:field="*{name}">
+
+        <br>
+
+
+
+
+        <label>Email:</label>
+
+        <input type="email"
+               class="form-control"
+               th:field="*{email}">
+
+        <br>
+
+
+
+
+        <label>Phone:</label>
+
+        <input type="text"
+               class="form-control"
+               th:field="*{phone}">
+
+        <br>
+
+
+
+
+
+        <label>Department:</label>
+
+
+        <select class="form-control"
+                th:field="*{department}">
+
+
+            <option th:each="dept : ${departments}"
+                    th:value="${dept.id}"
+                    th:text="${dept.name}">
+            </option>
+
+
+        </select>
+
+
+        <br>
+
+
+
+
+
+        <label>Project:</label>
+
+
+        <select class="form-control"
+                th:field="*{project}">
+
+
+            <option th:each="proj : ${projects}"
+                    th:value="${proj.id}"
+                    th:text="${proj.projectName}">
+            </option>
+
+
+        </select>
+
+
+        <br>
+
+
+
+
+
+        <label>Designation:</label>
+
+
+        <input type="text"
+               class="form-control"
+               th:field="*{designation}">
+
+        <br>
+
+
+
+
+
+        <label>Salary:</label>
+
+
+        <input type="number"
+               class="form-control"
+               th:field="*{salary}">
+
+        <br>
+
+
+
+
+
+        <label>Joining Date:</label>
+
+
+        <input type="date"
+               class="form-control"
+               th:field="*{joiningDate}">
+
+        <br>
+
+
+
+
+
+        <button type="submit"
+                class="btn btn-warning">
+
+            Update Employee
+
+        </button>
+
+
+
+    </form>
+
+
+
+    <br>
+
+
+    <a href="/employees"
+       class="btn btn-secondary">
+
+        Back to Employees
+
+    </a>
+
+
+
+</div>
+
+
+</body>
+
+</html>

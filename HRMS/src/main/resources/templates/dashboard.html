@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+
+    <title>StaffSync HRMS Dashboard</title>
+
+    <meta charset="UTF-8">
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+
+</head>
+
+
+
+<body class="bg-light">
+
+
+
+<div class="container mt-5">
+
+
+
+    <!-- Header -->
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+
+        <h2>
+            StaffSync HRMS Dashboard
+        </h2>
+
+
+
+        <!-- Logout Button -->
+
+        <form th:action="@{/logout}" method="post">
+
+
+            <button type="submit"
+                    class="btn btn-danger">
+
+
+                Logout
+
+
+            </button>
+
+
+        </form>
+
+
+
+    </div>
+
+
+
+
+
+    <!-- Dashboard Cards -->
+
+
+    <div class="row">
+
+
+
+
+
+        <!-- Employee Card -->
+
+
+        <div class="col-md-4 mb-4">
+
+
+            <div class="card shadow text-center">
+
+
+                <div class="card-body">
+
+
+                    <h5 class="card-title">
+
+                        Total Employees
+
+                    </h5>
+
+
+
+                    <h2 th:text="${employeeCount}">
+
+                        0
+
+                    </h2>
+
+
+
+                    <a href="/employees"
+                       class="btn btn-primary">
+
+
+                        Manage Employees
+
+
+                    </a>
+
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+
+        <!-- Department Card -->
+
+
+        <div class="col-md-4 mb-4">
+
+
+            <div class="card shadow text-center">
+
+
+                <div class="card-body">
+
+
+                    <h5 class="card-title">
+
+
+                        Total Departments
+
+
+                    </h5>
+
+
+
+
+                    <h2 th:text="${departmentCount}">
+
+
+                        0
+
+
+                    </h2>
+
+
+
+
+                    <a href="/departments"
+                       class="btn btn-success">
+
+
+                        Manage Departments
+
+
+                    </a>
+
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+
+        <!-- Project Card -->
+
+
+        <div class="col-md-4 mb-4">
+
+
+            <div class="card shadow text-center">
+
+
+                <div class="card-body">
+
+
+                    <h5 class="card-title">
+
+
+                        Total Projects
+
+
+                    </h5>
+
+
+
+
+                    <h2 th:text="${projectCount}">
+
+
+                        0
+
+
+                    </h2>
+
+
+
+
+                    <a href="/projects"
+                       class="btn btn-warning">
+
+
+                        Manage Projects
+
+
+                    </a>
+
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+
+
+    <!-- Quick Navigation -->
+
+
+    <div class="mt-4">
+
+
+        <h4>
+            Quick Access
+        </h4>
+
+
+
+        <a href="/employees"
+           class="btn btn-outline-primary me-2">
+
+
+            Employees
+
+
+        </a>
+
+
+
+
+        <a href="/departments"
+           class="btn btn-outline-success me-2">
+
+
+            Departments
+
+
+        </a>
+
+
+
+
+        <a href="/projects"
+           class="btn btn-outline-warning">
+
+
+            Projects
+
+
+        </a>
+
+
+
+    </div>
+
+
+
+</div>
+
+
+
+
+</body>
+
+
+</html>

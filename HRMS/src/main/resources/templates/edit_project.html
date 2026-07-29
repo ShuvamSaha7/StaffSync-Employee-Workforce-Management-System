@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+
+    <title>Edit Project</title>
+
+</head>
+
+
+<body>
+
+
+<h2>Edit Project</h2>
+
+
+
+
+<form th:action="@{/projects/update/{id}(id=${project.id})}"
+      th:object="${project}"
+      method="post">
+
+
+
+
+
+    <label>Project Name:</label>
+
+
+    <input type="text"
+           th:field="*{projectName}">
+
+
+    <br><br>
+
+
+
+
+
+    <label>Description:</label>
+
+
+    <textarea th:field="*{description}"></textarea>
+
+
+    <br><br>
+
+
+
+
+
+    <label>Start Date:</label>
+
+
+    <input type="date"
+           th:field="*{startDate}">
+
+
+    <br><br>
+
+
+
+
+
+    <label>End Date:</label>
+
+
+    <input type="date"
+           th:field="*{endDate}">
+
+
+    <br><br>
+
+
+
+
+
+    <label>Status:</label>
+
+
+    <select th:field="*{status}">
+
+
+        <option value="Active">
+            Active
+        </option>
+
+
+        <option value="Completed">
+            Completed
+        </option>
+
+
+        <option value="On Hold">
+            On Hold
+        </option>
+
+
+    </select>
+
+
+
+    <br><br>
+
+
+
+
+
+    <button type="submit">
+
+        Update Project
+
+    </button>
+
+
+
+</form>
+
+
+
+<br>
+
+
+<a href="/projects">
+
+    Back to Projects
+
+</a>
+
+
+
+</body>
+
+</html>
