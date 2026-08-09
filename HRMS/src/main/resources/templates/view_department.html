@@ -20,7 +20,7 @@
 <div class="container mt-5">
 
 
-    <h2>Department Details</h2>
+    <h2 class="mb-4">Department Details</h2>
 
 
 
@@ -61,10 +61,10 @@
 
             <th>Total Employees</th>
 
-            <td th:text="${department.employees.size()}"></td>
+            <td th:text="${department.employees != null ? department.employees.size() : 0}">
+            </td>
 
         </tr>
-
 
 
     </table>
@@ -72,8 +72,90 @@
 
 
 
+    <!-- Projects Section -->
+
+    <div class="card mt-4">
+
+
+        <div class="card-header bg-success text-white">
+
+            <h5 class="mb-0">
+                Projects Under This Department
+            </h5>
+
+        </div>
+
+
+
+        <div class="card-body">
+
+
+            <table class="table table-bordered">
+
+
+                <thead class="table-dark">
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Project Name</th>
+
+                    <th>Status</th>
+
+                    <th>Start Date</th>
+
+                    <th>End Date</th>
+
+                </tr>
+
+
+                </thead>
+
+
+
+                <tbody>
+
+
+                <tr th:each="project : ${department.projects}">
+
+
+                    <td th:text="${project.id}"></td>
+
+
+                    <td th:text="${project.projectName}"></td>
+
+
+                    <td th:text="${project.status}"></td>
+
+
+                    <td th:text="${project.startDate}"></td>
+
+
+                    <td th:text="${project.endDate}"></td>
+
+
+                </tr>
+
+
+                </tbody>
+
+
+            </table>
+
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+
     <a href="/departments"
-       class="btn btn-primary">
+       class="btn btn-primary mt-3">
 
         Back
 

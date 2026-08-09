@@ -1,307 +1,493 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-
 <head>
-
-    <title>StaffSync HRMS Dashboard</title>
 
     <meta charset="UTF-8">
 
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>StaffSync HRMS Dashboard</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
           rel="stylesheet">
 
+    <style>
+
+        body {
+            background: #f4f7fb;
+            font-family: Arial, sans-serif;
+        }
+
+        .dashboard-wrapper {
+            min-height: 100vh;
+        }
+
+        .top-navbar {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 20px 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .brand-title {
+            font-weight: 700;
+            color: #212529;
+            margin-bottom: 3px;
+        }
+
+        .brand-subtitle {
+            color: #6c757d;
+            margin-bottom: 0;
+            font-size: 14px;
+        }
+
+        .logout-btn {
+            border-radius: 10px;
+            padding: 9px 20px;
+            font-weight: 600;
+        }
+
+        .stat-card {
+            border: none;
+            border-radius: 18px;
+            transition: 0.25s;
+            overflow: hidden;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12) !important;
+        }
+
+        .stat-card .card-body {
+            padding: 28px;
+        }
+
+        .stat-label {
+            color: #6c757d;
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .stat-number {
+            font-size: 38px;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .stat-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+            margin-bottom: 15px;
+        }
+
+        .employee-icon {
+            background: #e7f0ff;
+        }
+
+        .department-icon {
+            background: #e8f8ef;
+        }
+
+        .project-icon {
+            background: #fff4df;
+        }
+
+        .manage-btn {
+            border-radius: 9px;
+            padding: 8px 17px;
+            font-weight: 600;
+        }
+
+        .quick-access-section {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+        }
+
+        .section-title {
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .section-subtitle {
+            color: #6c757d;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .quick-card {
+            border: 1px solid #e9ecef;
+            border-radius: 14px;
+            padding: 22px;
+            text-decoration: none;
+            display: block;
+            color: #212529;
+            transition: 0.25s;
+            height: 100%;
+        }
+
+        .quick-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.09);
+            color: #212529;
+        }
+
+        .quick-card h5 {
+            font-weight: 700;
+            margin-top: 12px;
+        }
+
+        .quick-card p {
+            color: #6c757d;
+            font-size: 14px;
+            margin-bottom: 0;
+        }
+
+        .quick-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+
+        .employee-quick {
+            background: #e7f0ff;
+        }
+
+        .department-quick {
+            background: #e8f8ef;
+        }
+
+        .project-quick {
+            background: #fff4df;
+        }
+
+        .footer-text {
+            text-align: center;
+            color: #8a8f98;
+            font-size: 13px;
+            margin-top: 30px;
+        }
+
+    </style>
 
 </head>
 
 
-
-<body class="bg-light">
-
+<body>
 
 
-<div class="container mt-5">
+<div class="container py-4 dashboard-wrapper">
 
 
+    <!-- ================= HEADER ================= -->
 
-    <!-- Header -->
+    <div class="top-navbar d-flex justify-content-between
+                align-items-center mb-4">
 
-    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+
+            <h2 class="brand-title">
+                StaffSync HRMS
+            </h2>
+
+            <p class="brand-subtitle">
+                Employee & Workforce Management System
+            </p>
+
+        </div>
 
 
-        <h2>
-            StaffSync HRMS Dashboard
-        </h2>
+        <!-- Logout -->
 
-
-
-        <!-- Logout Button -->
-
-        <form th:action="@{/logout}" method="post">
-
+        <form th:action="@{/logout}"
+              method="post">
 
             <button type="submit"
-                    class="btn btn-danger">
-
+                    class="btn btn-danger logout-btn">
 
                 Logout
 
-
             </button>
-
 
         </form>
 
+    </div>
 
+
+
+    <!-- ================= WELCOME ================= -->
+
+    <div class="mb-4">
+
+        <h4 class="fw-bold">
+            Dashboard Overview
+        </h4>
+
+        <p class="text-muted">
+            Manage employees, departments and projects from one place.
+        </p>
 
     </div>
 
 
 
+    <!-- ================= STATISTICS ================= -->
+
+    <div class="row g-4 mb-4">
 
 
-    <!-- Dashboard Cards -->
+        <!-- Employees -->
 
+        <div class="col-lg-4 col-md-6">
 
-    <div class="row">
-
-
-
-
-
-        <!-- Employee Card -->
-
-
-        <div class="col-md-4 mb-4">
-
-
-            <div class="card shadow text-center">
-
+            <div class="card stat-card shadow-sm">
 
                 <div class="card-body">
 
+                    <div class="stat-icon employee-icon">
 
-                    <h5 class="card-title">
+                        👥
 
+                    </div>
+
+                    <div class="stat-label">
                         Total Employees
+                    </div>
 
-                    </h5>
-
-
-
-                    <h2 th:text="${employeeCount}">
+                    <div class="stat-number text-primary"
+                         th:text="${employeeCount}">
 
                         0
 
-                    </h2>
-
-
+                    </div>
 
                     <a href="/employees"
-                       class="btn btn-primary">
-
+                       class="btn btn-primary manage-btn">
 
                         Manage Employees
 
-
                     </a>
-
-
 
                 </div>
 
-
             </div>
-
 
         </div>
 
 
 
+        <!-- Departments -->
 
+        <div class="col-lg-4 col-md-6">
 
-
-
-        <!-- Department Card -->
-
-
-        <div class="col-md-4 mb-4">
-
-
-            <div class="card shadow text-center">
-
+            <div class="card stat-card shadow-sm">
 
                 <div class="card-body">
 
+                    <div class="stat-icon department-icon">
 
-                    <h5 class="card-title">
+                        🏢
 
+                    </div>
 
+                    <div class="stat-label">
                         Total Departments
+                    </div>
 
-
-                    </h5>
-
-
-
-
-                    <h2 th:text="${departmentCount}">
-
+                    <div class="stat-number text-success"
+                         th:text="${departmentCount}">
 
                         0
 
-
-                    </h2>
-
-
-
+                    </div>
 
                     <a href="/departments"
-                       class="btn btn-success">
-
+                       class="btn btn-success manage-btn">
 
                         Manage Departments
 
-
                     </a>
-
-
 
                 </div>
 
-
             </div>
-
 
         </div>
 
 
 
+        <!-- Projects -->
 
+        <div class="col-lg-4 col-md-6">
 
-
-
-        <!-- Project Card -->
-
-
-        <div class="col-md-4 mb-4">
-
-
-            <div class="card shadow text-center">
-
+            <div class="card stat-card shadow-sm">
 
                 <div class="card-body">
 
+                    <div class="stat-icon project-icon">
 
-                    <h5 class="card-title">
+                        📁
 
+                    </div>
 
+                    <div class="stat-label">
                         Total Projects
+                    </div>
 
-
-                    </h5>
-
-
-
-
-                    <h2 th:text="${projectCount}">
-
+                    <div class="stat-number text-warning"
+                         th:text="${projectCount}">
 
                         0
 
-
-                    </h2>
-
-
-
+                    </div>
 
                     <a href="/projects"
-                       class="btn btn-warning">
-
+                       class="btn btn-warning manage-btn">
 
                         Manage Projects
 
-
                     </a>
-
-
 
                 </div>
 
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- ================= QUICK ACCESS ================= -->
+
+    <div class="quick-access-section mt-4">
+
+        <h4 class="section-title">
+            Quick Access
+        </h4>
+
+        <p class="section-subtitle">
+            Quickly access the main HRMS modules.
+        </p>
+
+
+        <div class="row g-4">
+
+
+            <!-- Employees -->
+
+            <div class="col-lg-4 col-md-6">
+
+                <a href="/employees"
+                   class="quick-card">
+
+                    <div class="quick-icon employee-quick">
+
+                        👥
+
+                    </div>
+
+                    <h5>
+                        Employees
+                    </h5>
+
+                    <p>
+                        Add, update, search and manage employee records.
+                    </p>
+
+                </a>
+
+            </div>
+
+
+
+            <!-- Departments -->
+
+            <div class="col-lg-4 col-md-6">
+
+                <a href="/departments"
+                   class="quick-card">
+
+                    <div class="quick-icon department-quick">
+
+                        🏢
+
+                    </div>
+
+                    <h5>
+                        Departments
+                    </h5>
+
+                    <p>
+                        Manage departments and view employee information.
+                    </p>
+
+                </a>
+
+            </div>
+
+
+
+            <!-- Projects -->
+
+            <div class="col-lg-4 col-md-6">
+
+                <a href="/projects"
+                   class="quick-card">
+
+                    <div class="quick-icon project-quick">
+
+                        📁
+
+                    </div>
+
+                    <h5>
+                        Projects
+                    </h5>
+
+                    <p>
+                        Create and manage projects and their assignments.
+                    </p>
+
+                </a>
 
             </div>
 
 
         </div>
 
-
-
     </div>
 
 
 
+    <!-- ================= FOOTER ================= -->
 
+    <div class="footer-text">
 
-
-
-    <!-- Quick Navigation -->
-
-
-    <div class="mt-4">
-
-
-        <h4>
-            Quick Access
-        </h4>
-
-
-
-        <a href="/employees"
-           class="btn btn-outline-primary me-2">
-
-
-            Employees
-
-
-        </a>
-
-
-
-
-        <a href="/departments"
-           class="btn btn-outline-success me-2">
-
-
-            Departments
-
-
-        </a>
-
-
-
-
-        <a href="/projects"
-           class="btn btn-outline-warning">
-
-
-            Projects
-
-
-        </a>
-
-
+        StaffSync HRMS &nbsp;|&nbsp;
+        Employee & Workforce Management System
 
     </div>
-
 
 
 </div>
 
 
-
-
 </body>
-
 
 </html>

@@ -5,20 +5,16 @@ import in.strikes.HRMS.entity.Project;
 import in.strikes.HRMS.exception.ProjectNotFoundException;
 import in.strikes.HRMS.repository.ProjectRepository;
 
-import in.strikes.HRMS.service.ProjectService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
 
 
 @Service
 public class ProjectServiceImpl implements ProjectService {
 
 
-
     private final ProjectRepository repository;
-
 
 
     public ProjectServiceImpl(ProjectRepository repository){
@@ -56,8 +52,6 @@ public class ProjectServiceImpl implements ProjectService {
 
 
 
-
-
     // Get All Projects
 
     @Override
@@ -73,13 +67,10 @@ public class ProjectServiceImpl implements ProjectService {
 
 
 
-
-
     // Get Project By ID
 
     @Override
     public Project getProjectById(Long id){
-
 
 
         return repository.findById(id)
@@ -92,11 +83,7 @@ public class ProjectServiceImpl implements ProjectService {
 
                 );
 
-
     }
-
-
-
 
 
 
@@ -111,10 +98,8 @@ public class ProjectServiceImpl implements ProjectService {
     ){
 
 
-
         Project oldProject =
                 getProjectById(id);
-
 
 
 
@@ -143,15 +128,16 @@ public class ProjectServiceImpl implements ProjectService {
         );
 
 
+        // Department Mapping Update
+        oldProject.setDepartment(
+                project.getDepartment()
+        );
+
 
         return repository.save(oldProject);
 
 
     }
-
-
-
-
 
 
 
@@ -163,20 +149,14 @@ public class ProjectServiceImpl implements ProjectService {
     public void deleteProject(Long id){
 
 
-
         Project project =
                 getProjectById(id);
-
 
 
         repository.delete(project);
 
 
-
     }
-
-
-
 
 
 
@@ -197,6 +177,4 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
 
-
 }
-

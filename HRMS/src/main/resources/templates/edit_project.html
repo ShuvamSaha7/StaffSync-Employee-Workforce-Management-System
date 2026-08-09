@@ -6,128 +6,236 @@
 
     <title>Edit Project</title>
 
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+
 </head>
 
 
 <body>
 
 
-<h2>Edit Project</h2>
+<div class="container mt-5">
 
 
+    <div class="card shadow">
 
 
-<form th:action="@{/projects/update/{id}(id=${project.id})}"
-      th:object="${project}"
-      method="post">
+        <div class="card-header bg-warning">
 
+            <h3 class="mb-0">
+                Edit Project
+            </h3>
 
+        </div>
 
 
 
-    <label>Project Name:</label>
+        <div class="card-body">
 
 
-    <input type="text"
-           th:field="*{projectName}">
+            <form th:action="@{/projects/update/{id}(id=${project.id})}"
+                  th:object="${project}"
+                  method="post">
 
 
-    <br><br>
 
 
 
+                <div class="mb-3">
 
+                    <label class="form-label">
+                        Project Name
+                    </label>
 
-    <label>Description:</label>
 
+                    <input type="text"
+                           class="form-control"
+                           th:field="*{projectName}">
 
-    <textarea th:field="*{description}"></textarea>
 
+                </div>
 
-    <br><br>
 
 
 
 
 
-    <label>Start Date:</label>
+                <div class="mb-3">
 
 
-    <input type="date"
-           th:field="*{startDate}">
+                    <label class="form-label">
+                        Description
+                    </label>
 
 
-    <br><br>
+                    <textarea class="form-control"
+                              rows="3"
+                              th:field="*{description}">
+                    </textarea>
 
 
+                </div>
 
 
 
-    <label>End Date:</label>
 
 
-    <input type="date"
-           th:field="*{endDate}">
 
 
-    <br><br>
+                <div class="row">
 
 
+                    <div class="col-md-6 mb-3">
 
 
+                        <label class="form-label">
+                            Start Date
+                        </label>
 
-    <label>Status:</label>
 
+                        <input type="date"
+                               class="form-control"
+                               th:field="*{startDate}">
 
-    <select th:field="*{status}">
 
+                    </div>
 
-        <option value="Active">
-            Active
-        </option>
 
 
-        <option value="Completed">
-            Completed
-        </option>
 
 
-        <option value="On Hold">
-            On Hold
-        </option>
+                    <div class="col-md-6 mb-3">
 
 
-    </select>
+                        <label class="form-label">
+                            End Date
+                        </label>
 
 
+                        <input type="date"
+                               class="form-control"
+                               th:field="*{endDate}">
 
-    <br><br>
 
+                    </div>
 
 
+                </div>
 
 
-    <button type="submit">
 
-        Update Project
 
-    </button>
 
 
 
-</form>
+                <div class="mb-3">
 
 
+                    <label class="form-label">
+                        Status
+                    </label>
 
-<br>
 
+                    <select class="form-select"
+                            th:field="*{status}">
 
-<a href="/projects">
 
-    Back to Projects
+                        <option value="Active">
+                            Active
+                        </option>
 
-</a>
 
+                        <option value="Completed">
+                            Completed
+                        </option>
+
+
+                        <option value="On Hold">
+                            On Hold
+                        </option>
+
+
+                    </select>
+
+
+                </div>
+
+
+
+
+
+
+
+
+                <!-- Department Mapping -->
+
+                <div class="mb-3">
+
+
+                    <label class="form-label">
+                        Department
+                    </label>
+
+
+                    <select class="form-select"
+                            th:field="*{department}">
+
+
+                        <option value="">
+                            Select Department
+                        </option>
+
+
+                        <option th:each="dept : ${departments}"
+                                th:value="${dept.id}"
+                                th:text="${dept.name}">
+                        </option>
+
+
+                    </select>
+
+
+                </div>
+
+
+
+
+
+
+
+
+                <button type="submit"
+                        class="btn btn-success">
+
+                    Update Project
+
+                </button>
+
+
+
+                <a href="/projects"
+                   class="btn btn-secondary ms-2">
+
+                    Back
+
+                </a>
+
+
+
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
 
 
 </body>

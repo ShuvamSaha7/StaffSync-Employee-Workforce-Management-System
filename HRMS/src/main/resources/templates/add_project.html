@@ -1,10 +1,113 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-
 <head>
 
-    <title>Add Project</title>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Add Project | StaffSync</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <style>
+
+        body {
+            background-color: #f5f7fb;
+            font-family: Arial, sans-serif;
+        }
+
+        .main-container {
+            max-width: 950px;
+            margin: 40px auto;
+        }
+
+        .header-box {
+            background: linear-gradient(135deg, #0d6efd, #084298);
+            color: white;
+            padding: 28px;
+            border-radius: 14px;
+            margin-bottom: 25px;
+        }
+
+        .header-box h2 {
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .header-box p {
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        .project-card {
+            border: none;
+            border-radius: 14px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        .card-title {
+            font-weight: 600;
+            color: #212529;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #343a40;
+            margin-bottom: 7px;
+        }
+
+        .required {
+            color: #dc3545;
+        }
+
+        .form-control,
+        .form-select {
+            border-radius: 8px;
+            padding: 11px 13px;
+            border: 1px solid #ced4da;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.15);
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .section-heading {
+            font-size: 15px;
+            font-weight: 600;
+            color: #0d6efd;
+            border-bottom: 1px solid #e9ecef;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            border-radius: 8px;
+            padding: 10px 22px;
+            font-weight: 500;
+        }
+
+        .footer-buttons {
+            border-top: 1px solid #e9ecef;
+            padding-top: 20px;
+        }
+
+    </style>
 
 </head>
 
@@ -12,112 +115,271 @@
 <body>
 
 
-<h2>Add Project</h2>
+<div class="container main-container">
 
 
+    <!-- Header -->
 
-<form th:action="@{/projects/save}"
-      th:object="${project}"
-      method="post">
+    <div class="header-box">
 
+        <h2>
+            Add New Project
+        </h2>
 
+        <p>
+            Create a project and assign it to the appropriate department.
+        </p>
 
-    <label>Project Name:</label>
+    </div>
 
-    <input type="text"
-           th:field="*{projectName}">
 
-    <br><br>
 
+    <!-- Form Card -->
 
+    <div class="card project-card">
 
 
-    <label>Description:</label>
+        <div class="card-body p-4 p-md-5">
 
-    <textarea th:field="*{description}"></textarea>
 
+            <form th:action="@{/projects/save}"
+                  th:object="${project}"
+                  method="post">
 
-    <br><br>
 
+                <!-- Basic Information -->
 
+                <div class="form-section">
 
+                    <div class="section-heading">
 
+                        Project Information
 
-    <label>Start Date:</label>
+                    </div>
 
-    <input type="date"
-           th:field="*{startDate}">
 
+                    <div class="mb-4">
 
-    <br><br>
+                        <label class="form-label">
 
+                            Project Name
+                            <span class="required">*</span>
 
+                        </label>
 
+                        <input type="text"
+                               class="form-control"
+                               th:field="*{projectName}"
+                               placeholder="Enter project name">
 
+                        <div class="text-danger small mt-1"
+                             th:if="${#fields.hasErrors('projectName')}"
+                             th:errors="*{projectName}">
+                        </div>
 
-    <label>End Date:</label>
+                    </div>
 
-    <input type="date"
-           th:field="*{endDate}">
 
 
-    <br><br>
+                    <div class="mb-3">
 
+                        <label class="form-label">
 
+                            Description
+                            <span class="required">*</span>
 
+                        </label>
 
+                        <textarea class="form-control"
+                                  th:field="*{description}"
+                                  placeholder="Enter project description">
+                        </textarea>
 
-    <label>Status:</label>
+                        <div class="text-danger small mt-1"
+                             th:if="${#fields.hasErrors('description')}"
+                             th:errors="*{description}">
+                        </div>
 
+                    </div>
 
-    <select th:field="*{status}">
+                </div>
 
 
-        <option value="Active">
-            Active
-        </option>
 
+                <!-- Timeline -->
 
-        <option value="Completed">
-            Completed
-        </option>
+                <div class="form-section">
 
+                    <div class="section-heading">
 
-        <option value="On Hold">
-            On Hold
-        </option>
+                        Project Timeline
 
+                    </div>
 
-    </select>
 
+                    <div class="row">
 
-    <br><br>
 
+                        <div class="col-md-6 mb-3">
 
+                            <label class="form-label">
 
+                                Start Date
 
+                            </label>
 
-    <button type="submit">
+                            <input type="date"
+                                   class="form-control"
+                                   th:field="*{startDate}">
 
-        Save Project
+                        </div>
 
-    </button>
 
 
+                        <div class="col-md-6 mb-3">
 
-</form>
+                            <label class="form-label">
 
+                                End Date
 
+                            </label>
 
-<br>
+                            <input type="date"
+                                   class="form-control"
+                                   th:field="*{endDate}">
 
+                        </div>
 
-<a href="/projects">
 
-    Back to Projects
+                    </div>
 
-</a>
+                </div>
 
+
+
+                <!-- Assignment -->
+
+                <div class="form-section">
+
+                    <div class="section-heading">
+
+                        Project Assignment
+
+                    </div>
+
+
+                    <div class="row">
+
+
+                        <!-- Status -->
+
+                        <div class="col-md-6 mb-3">
+
+                            <label class="form-label">
+
+                                Project Status
+                                <span class="required">*</span>
+
+                            </label>
+
+                            <select class="form-select"
+                                    th:field="*{status}">
+
+                                <option value="">
+                                    Select Status
+                                </option>
+
+                                <option value="Active">
+                                    Active
+                                </option>
+
+                                <option value="Completed">
+                                    Completed
+                                </option>
+
+                                <option value="On Hold">
+                                    On Hold
+                                </option>
+
+                            </select>
+
+                            <div class="text-danger small mt-1"
+                                 th:if="${#fields.hasErrors('status')}"
+                                 th:errors="*{status}">
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- Department -->
+
+                        <div class="col-md-6 mb-3">
+
+                            <label class="form-label">
+
+                                Department
+                                <span class="required">*</span>
+
+                            </label>
+
+                            <select class="form-select"
+                                    th:field="*{department}">
+
+                                <option value="">
+                                    Select Department
+                                </option>
+
+                                <option th:each="dept : ${departments}"
+                                        th:value="${dept.id}"
+                                        th:text="${dept.name}">
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Buttons -->
+
+                <div class="footer-buttons d-flex justify-content-end">
+
+
+                    <a href="/projects"
+                       class="btn btn-outline-secondary me-2">
+
+                        Cancel
+
+                    </a>
+
+
+                    <button type="submit"
+                            class="btn btn-primary">
+
+                        Save Project
+
+                    </button>
+
+
+                </div>
+
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
 
 
 </body>

@@ -1,11 +1,11 @@
 package in.strikes.HRMS.entity;
 
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "projects")
@@ -32,5 +32,18 @@ public class Project {
 
     @NotBlank(message = "Project status is required")
     private String status;
+
+
+    // Department Mapping
+
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    private Department department;
+
+
+    // Employee Mapping
+
+    @OneToMany(mappedBy = "project")
+    private List<Employee> employees;
 
 }
