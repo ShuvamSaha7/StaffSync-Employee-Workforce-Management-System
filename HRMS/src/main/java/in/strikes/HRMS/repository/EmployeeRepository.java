@@ -1,8 +1,5 @@
 package in.strikes.HRMS.repository;
 
-
-
-
 import in.strikes.HRMS.entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
