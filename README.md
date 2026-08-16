@@ -18,7 +18,7 @@ StaffSync is a web-based Employee and Workforce Management System built using Ja
 - Global Exception Handling
 - Responsive Thymeleaf UI
 
-- ### Backend
+### Backend
 
 - Java
 - Spring Boot
@@ -33,7 +33,7 @@ StaffSync is a web-based Employee and Workforce Management System built using Ja
 - Controller–Service–Repository Architecture
 - Dependency Injection
 
-- ### Frontend
+### Frontend
 
 - Thymeleaf
 - HTML5
@@ -56,7 +56,7 @@ StaffSync is a web-based Employee and Workforce Management System built using Ja
 - Git
 - GitHub
 
-- ## 🏗️ Architecture
+## 🏗️ Architecture
 
 text
 Browser
