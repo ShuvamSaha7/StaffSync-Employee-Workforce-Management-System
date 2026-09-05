@@ -26,6 +26,7 @@ StaffSync is a web-based Employee and Workforce Management System built using Ja
 - Spring Data JPA
 - Hibernate ORM
 - MySQL
+- Spring AOP
 - REST API
 - Exception Handling
 - Validation
